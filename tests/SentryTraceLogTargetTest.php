@@ -16,15 +16,6 @@ use Yiisoft\Yii\Sentry\Tracing\SentryTraceMiddleware;
 
 class SentryTraceLogTargetTest extends TestCase
 {
-    public static function setUpBeforeClass(): void
-    {
-        $self = new self();
-        $methodName = debug_backtrace()[0]['function'];
-        $eventKey = self::class . "::$methodName()";
-        $self->createSentryHub($eventKey);
-        $self->getLogger()->flush(true);//drop init integration debug messages breadcrumb
-    }
-
     public function testAutotrace(): void
     {
         $methodName = debug_backtrace()[0]['function'];

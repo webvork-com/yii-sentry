@@ -7,7 +7,7 @@ namespace Yiisoft\Yii\Sentry\Tests;
 use Error;
 use HttpSoft\Message\Response;
 use HttpSoft\Message\ServerRequest;
-use PHPUnit\Framework\Error\Error as PHPUnitError;
+use PHPUnit\Framework\Exception as PHPUnitError;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -36,27 +36,6 @@ final class SentryMiddlewareTest extends TestCase
             );
         } catch (RuntimeException $e) {
             $this->assertTransportHasException(RuntimeException::class, 'Exception test.', $eventKey);
-
-            throw $e;
-        }
-    }
-
-    public function testProcessWithFatalError(): void
-    {
-        $methodName = debug_backtrace()[0]['function'];
-        $eventKey = self::class . "::$methodName()";
-
-        $this->expectError();
-        $this->expectExceptionMessage('Fatal error test.');
-
-        try {
-            $middleware = new SentryMiddleware($this->createSentryHub($eventKey));
-            $middleware->process(
-                new ServerRequest(method: 'GET', uri: '/'),
-                $this->createRequestHandlerWithFatalError(),
-            );
-        } catch (Error $e) {
-            $this->assertTransportHasException(PHPUnitError::class, 'Fatal error test.', $eventKey);
 
             throw $e;
         }

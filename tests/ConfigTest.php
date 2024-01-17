@@ -78,7 +78,7 @@ final class ConfigTest extends TestCase
         $this->assertInstanceOf(HttpTransport::class, $transport);
     }
 
-    public function eventsConsoleDataProvider(): array
+    public static function eventsConsoleDataProvider(): array
     {
         return [
             'disabledWithDsnAndHandleConsoleErrors' => [

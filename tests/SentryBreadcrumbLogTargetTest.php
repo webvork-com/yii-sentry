@@ -9,15 +9,6 @@ use Yiisoft\Yii\Sentry\Tests\Stub\Transport;
 
 class SentryBreadcrumbLogTargetTest extends TestCase
 {
-    public static function setUpBeforeClass(): void
-    {
-        $self = new self();
-        $methodName = debug_backtrace()[0]['function'];
-        $eventKey = self::class . "::$methodName()";
-        $self->createSentryHub($eventKey);
-        $self->getLogger()->flush();//drop init integration debug messages breadcrumb
-    }
-
     public function testSendBreadCrumbWithError()
     {
         $methodName = debug_backtrace()[0]['function'];
