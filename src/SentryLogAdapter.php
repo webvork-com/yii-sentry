@@ -70,7 +70,7 @@ final class SentryLogAdapter
                      * @psalm-suppress MixedAssignment
                      */
                     foreach ($context['extra'] as $key => $tag) {
-                        $scope->setExtra((string)$key, $tag);
+                        $scope->setExtra((string) $key, $tag);
                     }
                     unset($context['extra']);
                 }
@@ -80,26 +80,26 @@ final class SentryLogAdapter
                      * @psalm-suppress MixedAssignment
                      */
                     foreach ($context['tags'] as $key => $tag) {
-                        $scope->setTag((string)$key, (string)$tag);
+                        $scope->setTag((string) $key, (string) $tag);
                     }
                     unset($context['tags']);
                 }
 
                 if (is_array($context['fingerprint'] ?? null)) {
                     $scope->setFingerprint(
-                        $this->formatFingerPrint((array)$context['fingerprint'])
+                        $this->formatFingerPrint((array) $context['fingerprint'])
                     );
                     unset($context['fingerprint']);
                 }
 
                 if (is_array($context['user'] ?? null)) {
                     $scope->setUser(
-                        $this->formatUser((array)$context['user'])
+                        $this->formatUser((array) $context['user'])
                     );
                     unset($context['user']);
                 }
 
-                $logger = !empty($context['logger']) ? (string)$context['logger'] : 'default logger';
+                $logger = !empty($context['logger']) ? (string) $context['logger'] : 'default logger';
                 unset($context['logger']);
 
                 if (!empty($context)) {
@@ -153,7 +153,7 @@ final class SentryLogAdapter
 */
         foreach ($fingerprint as $key => $value) {
             $result[$key] = (is_string($value) || is_numeric($value))
-                ? (string)$value
+                ? (string) $value
                 : '<wrong value>';
         }
 
@@ -170,7 +170,7 @@ final class SentryLogAdapter
          * @psalm-suppress MixedAssignment
          */
         foreach ($user as $key => $value) {
-            $result[(string)$key] = $value;
+            $result[(string) $key] = $value;
         }
 
         return $result;
@@ -197,8 +197,8 @@ final class SentryLogAdapter
 
     public function breadcrumb(string $level, string $message, array $context): void
     {
-        $category = (string)($context['category'] ?? 'log');
-        $time = (float)($context['time'] ?? microtime(true));
+        $category = (string) ($context['category'] ?? 'log');
+        $time = (float) ($context['time'] ?? microtime(true));
         unset($context['category'], $context['time']);
 
         if (array_key_exists('trace', $context)
@@ -208,7 +208,7 @@ final class SentryLogAdapter
         }
         if (!empty($context['memory']) && is_numeric($context['memory'])) {
             $context['memory'] = round(
-                ((float)$context['memory'] / (1024 * 1024)),
+                ((float) $context['memory'] / (1024 * 1024)),
                 2
             ) . 'MB';
         }
@@ -217,7 +217,7 @@ final class SentryLogAdapter
          * @psalm-suppress MixedAssignment
          */
         foreach ($context as $key => $value) {
-            $formattedContext[(string)$key] = $value;
+            $formattedContext[(string) $key] = $value;
         }
         Integration::addBreadcrumb(
             new Breadcrumb(

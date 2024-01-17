@@ -83,8 +83,8 @@ final class SentryTraceMiddleware implements MiddlewareInterface
         if ($request->hasHeader('sentry-trace')) {
             $headers = $request->getHeader('sentry-trace');
             $baggageHeaders = $request->hasHeader('baggage') ? $request->getHeader('baggage') : [];
-            $sentryTraceHeader = (string)reset($headers);
-            $baggageHeader = (string)reset($baggageHeaders);
+            $sentryTraceHeader = (string) reset($headers);
+            $baggageHeader = (string) reset($baggageHeaders);
             $context = TransactionContext::fromHeaders($sentryTraceHeader, $baggageHeader);
         } else {
             $context = new TransactionContext();
@@ -160,7 +160,7 @@ final class SentryTraceMiddleware implements MiddlewareInterface
         $autoload = new SpanContext();
         $autoload->setOp('autoload');
         $autoload->setStartTimestamp($bootstrap->getStartTimestamp());
-        $autoload->setEndTimestamp((float)SENTRY_AUTOLOAD);
+        $autoload->setEndTimestamp((float) SENTRY_AUTOLOAD);
 
         $bootstrap->startChild($autoload);
     }
@@ -238,13 +238,13 @@ final class SentryTraceMiddleware implements MiddlewareInterface
     {
         /** @psalm-suppress MixedAssignment */
         $attStartTime = $request->getAttribute('applicationStartTime');
-        if (is_numeric($attStartTime) && !empty((float)$attStartTime)) {
-            $requestStartTime = (float)$attStartTime;
+        if (is_numeric($attStartTime) && !empty((float) $attStartTime)) {
+            $requestStartTime = (float) $attStartTime;
         } else {
             $requestStartTime = !empty($request->getServerParams()['REQUEST_TIME_FLOAT'])
-                ? (float)$request->getServerParams()['REQUEST_TIME_FLOAT']
+                ? (float) $request->getServerParams()['REQUEST_TIME_FLOAT']
                 : (defined('APP_START_TIME')
-                    ? (float)APP_START_TIME
+                    ? (float) APP_START_TIME
                     : null);
         }
 

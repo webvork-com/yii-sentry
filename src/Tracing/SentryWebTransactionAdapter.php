@@ -11,9 +11,7 @@ use Sentry\Tracing\TransactionContext;
 
 class SentryWebTransactionAdapter
 {
-    public function __construct(private LoggerInterface $logger, private SentryTraceMiddleware $middleware)
-    {
-    }
+    public function __construct(private LoggerInterface $logger, private SentryTraceMiddleware $middleware) {}
 
     public function begin(?string $sentryTraceString = null, string $baggage = ''): self
     {

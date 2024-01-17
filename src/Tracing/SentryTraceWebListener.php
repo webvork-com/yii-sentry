@@ -19,9 +19,7 @@ final class SentryTraceWebListener
 
     private ?bool $isFirstPopFromMiddlewareStack = true;
 
-    public function __construct(private SentryTraceMiddleware $traceMiddleware)
-    {
-    }
+    public function __construct(private SentryTraceMiddleware $traceMiddleware) {}
 
     /**
      * @param array ...$params

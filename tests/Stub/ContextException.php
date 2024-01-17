@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\Sentry\Tests\Stub;
 
-class ContextException extends \Exception
+use Exception;
+
+class ContextException extends Exception
 {
     public array $context = [];
 

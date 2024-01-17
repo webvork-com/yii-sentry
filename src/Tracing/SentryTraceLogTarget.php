@@ -17,8 +17,8 @@ final class SentryTraceLogTarget extends Target
             static function (Message $message): Message {
                 /** @var array<string, mixed> $context */
                 $context = $message->context();
-                $category = (string)($context['category'] ?? 'log');
-                $time = (float)($message->context()['time'] ?? microtime(true));
+                $category = (string) ($context['category'] ?? 'log');
+                $time = (float) ($message->context()['time'] ?? microtime(true));
                 unset($context['category'], $context['time']);
                 if (array_key_exists('trace', $context)
                     && empty($context['trace'])
@@ -27,7 +27,7 @@ final class SentryTraceLogTarget extends Target
                 }
                 if (!empty($context['memory']) && is_numeric($context['memory'])) {
                     $context['memory'] = round(
-                        ((float)$context['memory'] / (1024 * 1024)),
+                        ((float) $context['memory'] / (1024 * 1024)),
                         2
                     ) . 'MB';
                 }
@@ -48,7 +48,7 @@ final class SentryTraceLogTarget extends Target
                 $spanContext->setOp($category);
                 $spanContext->setDescription($message->message());
                 $spanContext->setStartTimestamp($time);
-                $elapsed = empty($context['elapsed']) ? null : (float)$context['elapsed'];
+                $elapsed = empty($context['elapsed']) ? null : (float) $context['elapsed'];
                 if ($elapsed) {
                     $spanContext->setEndTimestamp($time + $elapsed);
                 }
