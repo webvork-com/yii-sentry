@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\Sentry\Tests;
 
-use Error;
 use HttpSoft\Message\Response;
 use HttpSoft\Message\ServerRequest;
-use PHPUnit\Framework\Exception as PHPUnitError;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

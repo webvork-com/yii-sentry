@@ -64,7 +64,7 @@ final class SentryTraceConsoleListener
 
     private function startTransaction(): void
     {
-        $requestStartTime = defined('APP_START_TIME') ? (float)APP_START_TIME : microtime(true);
+        $requestStartTime = defined('APP_START_TIME') ? (float) APP_START_TIME : microtime(true);
         $context = new TransactionContext();
         $context->setOp('console');
         $context->setStartTimestamp($requestStartTime);
@@ -79,7 +79,7 @@ final class SentryTraceConsoleListener
         if ($this->bootedTimestamp === null || $this->transaction === null) {
             return;
         }
-        $appStartTime = defined('APP_START_TIME') ? (float)APP_START_TIME : microtime(true);
+        $appStartTime = defined('APP_START_TIME') ? (float) APP_START_TIME : microtime(true);
 
         $spanContextStart = new SpanContext();
         $spanContextStart->setOp('app.bootstrap');
@@ -106,7 +106,7 @@ final class SentryTraceConsoleListener
         $autoload = new SpanContext();
         $autoload->setOp('autoload');
         $autoload->setStartTimestamp($bootstrap->getStartTimestamp());
-        $autoload->setEndTimestamp((float)SENTRY_AUTOLOAD);
+        $autoload->setEndTimestamp((float) SENTRY_AUTOLOAD);
 
         $bootstrap->startChild($autoload);
     }
@@ -160,7 +160,7 @@ final class SentryTraceConsoleListener
             $this->appSpan?->finish();
             $this->appSpan = null;
 
-            $this->transaction->setTags(['exitCode' => (string)$exitCode]);
+            $this->transaction->setTags(['exitCode' => (string) $exitCode]);
             // Make sure we set the transaction and not have a child span in the Sentry SDK
             // If the transaction is not on the scope during finish, the `trace.context` is wrong
             SentrySdk::getCurrentHub()->setSpan($this->transaction);

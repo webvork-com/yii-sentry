@@ -6,6 +6,7 @@ namespace Yiisoft\Yii\Sentry;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
+use Stringable;
 
 final class PostgresLoggerDecorator implements LoggerInterface
 {
@@ -14,13 +15,11 @@ final class PostgresLoggerDecorator implements LoggerInterface
     private const LOG_CATEGORY = 'db_app';
     private const ORM_QUERY_LOG_CATEGORY = 'db_sys';
 
-    public function __construct(private LoggerInterface $defaultLogger)
-    {
-    }
+    public function __construct(private LoggerInterface $defaultLogger) {}
 
-    public function log($level, string|\Stringable $message, array $context = []): void
+    public function log($level, string|Stringable $message, array $context = []): void
     {
-        $extendedContext = $this->extendContext($context, (string)$message);
+        $extendedContext = $this->extendContext($context, (string) $message);
 
         $this->defaultLogger->log($level, $message, $extendedContext);
     }
@@ -33,7 +32,7 @@ final class PostgresLoggerDecorator implements LoggerInterface
             $context['category'] = self::LOG_CATEGORY;
         }
 
-        $context['time'] = empty($context['time']) ? microtime(true) : (float)$context['time'];
+        $context['time'] = empty($context['time']) ? microtime(true) : (float) $context['time'];
 
         return $context;
     }

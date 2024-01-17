@@ -34,3 +34,4 @@ phpunit.phar
 analysis.txt
 
 /.phpunit.cache/
+/.php-cs-fixer.cache

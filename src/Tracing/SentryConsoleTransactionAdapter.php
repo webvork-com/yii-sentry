@@ -12,9 +12,7 @@ use Yiisoft\Yii\Console\Event\ApplicationShutdown;
 
 final class SentryConsoleTransactionAdapter
 {
-    public function __construct(private LoggerInterface $logger, private SentryTraceConsoleListener $consoleListener)
-    {
-    }
+    public function __construct(private LoggerInterface $logger, private SentryTraceConsoleListener $consoleListener) {}
 
     public function begin(?string $sentryTraceString = null, ?string $baggage = null): self
     {

@@ -19,7 +19,6 @@ use Yiisoft\Yii\Console\SymfonyEventDispatcher;
 use Yiisoft\Yii\Sentry\SentryConsoleHandler;
 use Yiisoft\Yii\Sentry\Tests\Stub\ErrorHandlerExceptionCommand;
 use Yiisoft\Yii\Sentry\Tests\Stub\ExceptionCommand;
-use Yiisoft\Yii\Sentry\Tests\Stub\FatalErrorCommand;
 use Yiisoft\Yii\Sentry\Tests\Stub\Transport;
 
 final class SentryConsoleHandlerTest extends TestCase

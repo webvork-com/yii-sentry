@@ -73,9 +73,7 @@ class SentryTraceLogTargetTest extends TestCase
     private function createRequestHandlerWithoutException($innerHandler): RequestHandlerInterface
     {
         return new class ($innerHandler) implements RequestHandlerInterface {
-            public function __construct(public $innerHandler)
-            {
-            }
+            public function __construct(public $innerHandler) {}
 
             public function handle(ServerRequestInterface $request): ResponseInterface
             {

@@ -11,9 +11,7 @@ use Sentry\Integration\RequestFetcherInterface;
 
 class YiiRequestFetcher implements RequestFetcherInterface
 {
-    public function __construct(private ContainerInterface $container)
-    {
-    }
+    public function __construct(private ContainerInterface $container) {}
 
     /**
      * @psalm-suppress MixedInferredReturnType

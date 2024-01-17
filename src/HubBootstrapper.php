@@ -33,12 +33,11 @@ final class HubBootstrapper
         private LoggerInterface $logger,
         private HubInterface $hub,
         private ContainerInterface $container,
-    ) {
-    }
+    ) {}
 
     public function bootstrap(): void
     {
-        $this->options->setIntegrations(fn (array $integrations) => $this->prepareIntegrations($integrations));
+        $this->options->setIntegrations(fn(array $integrations) => $this->prepareIntegrations($integrations));
 
         $clientBuilder = new ClientBuilder($this->options);
         $clientBuilder
@@ -65,7 +64,7 @@ final class HubBootstrapper
 
         $integrations = array_filter(
             $integrations,
-            static fn (SdkIntegration\IntegrationInterface $integration): bool => !(
+            static fn(SdkIntegration\IntegrationInterface $integration): bool => !(
                 $integration instanceof SdkIntegration\ErrorListenerIntegration ||
                 $integration instanceof SdkIntegration\ExceptionListenerIntegration ||
                 $integration instanceof SdkIntegration\FatalErrorListenerIntegration ||
@@ -97,7 +96,7 @@ final class HubBootstrapper
         $integrationsToResolve = $this->configuration->getIntegrations();
 
         $enableDefaultTracingIntegrations = array_key_exists('default_integrations', $this->configuration->getTracing())
-            && (bool)$this->configuration->getTracing()['default_integrations'];
+            && (bool) $this->configuration->getTracing()['default_integrations'];
 
         if ($enableDefaultTracingIntegrations && $this->configuration->couldHavePerformanceTracingEnabled()) {
             $integrationsToResolve = array_merge(

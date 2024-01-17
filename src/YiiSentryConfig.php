@@ -8,9 +8,7 @@ use InvalidArgumentException;
 
 final class YiiSentryConfig
 {
-    public function __construct(protected array $config)
-    {
-    }
+    public function __construct(protected array $config) {}
 
     /**
      * Retrieve the user configuration.
@@ -44,12 +42,12 @@ final class YiiSentryConfig
 
     public function getMaxGuzzleBodyTrace(): ?int
     {
-        return empty($this->getTracing()['guzzle_max_body']) ? null : (int)$this->getTracing()['guzzle_max_body'];
+        return empty($this->getTracing()['guzzle_max_body']) ? null : (int) $this->getTracing()['guzzle_max_body'];
     }
 
     public function getLogLevel(): ?string
     {
-        return isset($this->config['log_level']) ? (string)$this->config['log_level'] : null;
+        return isset($this->config['log_level']) ? (string) $this->config['log_level'] : null;
     }
 
     public function getIntegrations(): array
