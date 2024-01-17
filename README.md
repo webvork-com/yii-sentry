@@ -11,7 +11,7 @@
 
 The package provides [Sentry](https://sentry.io/) integration for Yii Framework
 
-[![Build status](https://github.com/webvork-com/yii-sentry/workflows/build/badge.svg)](https://github.com/yiisoft/yii-sentry/actions?query=workflow%3Abuild)
+[![Build status](https://github.com/webvork-com/yii-sentry/workflows/build/badge.svg)](https://github.com/webvork-com/yii-sentry/actions?query=workflow%3Abuild)
 
 ## Installation
 
