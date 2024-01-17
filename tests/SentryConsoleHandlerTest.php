@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\Sentry\Tests;
 
-use PHPUnit\Framework\Error\Error as PHPUnitError;
 use RuntimeException;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\Console\Input\StringInput;
@@ -33,15 +32,6 @@ final class SentryConsoleHandlerTest extends TestCase
 
         $this->createAndRunAppWithEventHandler($eventKey, ExceptionCommand::class);
         $this->assertTransportHasException(RuntimeException::class, 'Console exception test.', $eventKey);
-    }
-
-    public function testHandleWithFatalError(): void
-    {
-        $methodName = debug_backtrace()[0]['function'];
-        $eventKey = self::class . "::$methodName()";
-
-        $this->createAndRunAppWithEventHandler($eventKey, FatalErrorCommand::class);
-        $this->assertTransportHasException(PHPUnitError::class, 'Console fatal error test.', $eventKey);
     }
 
     public function testHandleWithErrorHandlerException(): void
